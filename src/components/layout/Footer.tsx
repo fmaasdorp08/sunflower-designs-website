@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Instagram, Mail } from 'lucide-react';
 import { useState } from 'react';
+import { brandImages } from '@/data/brandImages';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -47,7 +48,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           {/* Brand */}
           <div>
-            <span className="text-nav text-white tracking-[0.1em]">SUNFLOWER</span>
+            <div className="flex items-center gap-3">
+              <img src={brandImages.logo} alt="Sunflower Designs logo" className="h-10 w-10 rounded-full object-contain bg-white/90" />
+              <span className="text-nav text-white tracking-[0.1em]">Sunflower Designs</span>
+            </div>
             <p className="text-body-small text-warm-grey mt-3">Cape Town, South Africa</p>
             <div className="flex gap-4 mt-4">
               <span className="text-white/60 hover:text-white transition-colors cursor-pointer">
