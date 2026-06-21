@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { brandImages } from '@/data/brandImages';
 
 export default function DesignerStory() {
   const imgRef = useScrollReveal<HTMLDivElement>({ threshold: '80%' });
@@ -9,12 +10,16 @@ export default function DesignerStory() {
     <section className="bg-white py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div ref={imgRef}>
+          <div ref={imgRef} className="relative">
             <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=1067&fit=crop&q=80"
-              alt="Farah Davids in her Cape Town studio"
+              src={brandImages.farah}
+              alt="Farah Davids, designer of Sunflower Designs"
               className="w-full aspect-[3/4] object-cover rounded-2xl"
             />
+            <div className="absolute -bottom-6 -right-6 hidden md:block bg-light-sand rounded-2xl p-5 shadow-sm max-w-[220px]">
+              <p className="text-caption text-muted-olive mb-2">FOUNDER LED</p>
+              <p className="font-display text-2xl leading-7 text-dark-taupe">Every piece starts with Farah’s eye.</p>
+            </div>
           </div>
           <div ref={textRef}>
             <p className="text-caption text-muted-olive mb-3">THE DESIGNER</p>
@@ -22,10 +27,10 @@ export default function DesignerStory() {
               Designed by Farah Davids
             </h2>
             <p className="text-lg md:text-xl text-warm-grey mt-6 leading-relaxed">
-              Sunflower Designs was born from a deep love of fashion and a desire to create something meaningful. Every garment I design carries a piece of my story — from the fabrics I source to the hands that bring each piece to life in Cape Town.
+              Sunflower Designs was born from a deep love of fashion and a desire to create something meaningful. Every garment carries Farah’s hand and point of view, from fabric choices to the final finishing details.
             </p>
             <p className="text-lg md:text-xl text-warm-grey mt-4 leading-relaxed">
-              I believe fashion should be timeless, not disposable. Each collection is small, intentional, and designed to be worn for years, not seasons.
+              The result is clothing that feels personal, wearable and intentionally made for women who value comfort, individuality and quiet elegance.
             </p>
             <Link
               to="/about"
