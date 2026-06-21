@@ -1,0 +1,1164 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAFAF7;
+    --bark: #2C2416;
+    --earth: #5C4A2A;
+    --sage: #7A8C6E;
+    --sand: #C4A97D;
+    --gold: #B8965A;
+    --blush: #E8DDD0;
+    --muted: #8A8278;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .doc {
+    font-family: var(--font-body);
+    color: var(--bark);
+    background: var(--warm-white);
+    max-width: 680px;
+  }
+
+  .section {
+    padding: 2.5rem 2rem;
+    border-bottom: 0.5px solid var(--blush);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--bark);
+    margin-bottom: 1rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--earth);
+  }
+
+  .body-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--earth);
+  }
+
+  .hero {
+    background: var(--bark);
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border: 1px solid rgba(184,150,90,0.2);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 240px; height: 240px;
+    border: 1px solid rgba(184,150,90,0.12);
+    border-radius: 50%;
+  }
+
+  .hero-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--sand);
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.6);
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .card {
+    background: var(--cream);
+    border: 0.5px solid var(--blush);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .card-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .card-body {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--earth);
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--earth);
+    background: var(--cream);
+    border: 0.5px solid var(--sand);
+    border-radius: 20px;
+    padding: 4px 12px;
+  }
+
+  .palette-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    min-width: 60px;
+  }
+
+  .swatch-block {
+    width: 100%;
+    height: 56px;
+    border-radius: 6px;
+  }
+
+  .swatch-name {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  .swatch-hex {
+    font-size: 9px;
+    font-weight: 300;
+    color: var(--muted);
+    text-align: center;
+    font-family: var(--font-body);
+  }
+
+  .type-specimen {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .type-row {
+    border-left: 2px solid var(--sand);
+    padding-left: 1rem;
+  }
+
+  .type-meta {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .type-display {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--bark);
+    line-height: 1.1;
+  }
+
+  .type-h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--bark);
+    letter-spacing: 0.08em;
+  }
+
+  .type-body-sample {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1.8;
+  }
+
+  .type-caption {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .sitemap {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sitemap-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .sitemap-node {
+    background: var(--bark);
+    color: var(--warm-white);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    padding: 8px 14px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .sitemap-node.secondary {
+    background: var(--cream);
+    color: var(--earth);
+    border: 0.5px solid var(--blush);
+  }
+
+  .sitemap-node.accent {
+    background: var(--gold);
+    color: var(--warm-white);
+  }
+
+  .sitemap-children {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .sitemap-connector {
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .copy-block {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .copy-item {
+    padding-bottom: 1.25rem;
+    border-bottom: 0.5px solid var(--blush);
+  }
+
+  .copy-item:last-child { border-bottom: none; }
+
+  .copy-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .copy-headline {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--bark);
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+
+  .copy-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .wireframe {
+    margin-top: 1.5rem;
+    border: 0.5px solid var(--blush);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 12px;
+  }
+
+  .wf-nav {
+    background: var(--bark);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .wf-nav-brand {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--warm-white);
+    letter-spacing: 0.08em;
+  }
+
+  .wf-nav-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .wf-nav-link {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,250,247,0.6);
+  }
+
+  .wf-hero {
+    background: var(--blush);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wf-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(184,150,90,0.04) 40px,
+      rgba(184,150,90,0.04) 80px
+    );
+  }
+
+  .wf-hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+
+  .wf-hero-title {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--bark);
+    line-height: 1.1;
+    position: relative;
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-hero-cta {
+    background: var(--bark);
+    color: var(--warm-white);
+    border: none;
+    padding: 10px 24px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 1rem;
+  }
+
+  .wf-strips {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .wf-strip {
+    background: var(--cream);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-right: 0.5px solid var(--blush);
+  }
+
+  .wf-strip:last-child { border-right: none; }
+
+  .wf-strip-img {
+    width: 100%;
+    height: 90px;
+    background: var(--blush);
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 10px;
+  }
+
+  .wf-strip-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--bark);
+    margin-bottom: 4px;
+  }
+
+  .wf-strip-sub {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  .wf-quote {
+    background: var(--bark);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .wf-quote-text {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--sand);
+    line-height: 1.5;
+  }
+
+  .wf-footer {
+    background: var(--bark);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .wf-footer-col-title {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-footer-link {
+    font-size: 11px;
+    color: rgba(245,240,232,0.5);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .persona-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .persona-card {
+    background: var(--cream);
+    border: 0.5px solid var(--blush);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .persona-name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--bark);
+    margin-bottom: 2px;
+  }
+
+  .persona-role {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .persona-detail {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1.7;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--bark);
+    color: var(--warm-white);
+    border: none;
+    padding: 11px 24px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: default;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--bark);
+    border: 1px solid var(--bark);
+    padding: 11px 24px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: default;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--gold);
+    border: none;
+    padding: 11px 0;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: default;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .audit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .audit-card {
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .audit-card.strength {
+    background: #EEF3E8;
+    border: 0.5px solid #C0D4A8;
+  }
+
+  .audit-card.weakness {
+    background: #F5EDE8;
+    border: 0.5px solid #D4B8A8;
+  }
+
+  .audit-card.opportunity {
+    background: #EBF0F5;
+    border: 0.5px solid #A8C0D4;
+  }
+
+  .audit-card.watch {
+    background: #F5F0E8;
+    border: 0.5px solid var(--blush);
+  }
+
+  .audit-card-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .audit-card.strength .audit-card-label { color: #4A7A2A; }
+  .audit-card.weakness .audit-card-label { color: #8A4A2A; }
+  .audit-card.opportunity .audit-card-label { color: #2A4A7A; }
+  .audit-card.watch .audit-card-label { color: var(--muted); }
+
+  .audit-item {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1.7;
+    padding: 4px 0;
+    border-bottom: 0.5px solid rgba(0,0,0,0.06);
+  }
+
+  .audit-item:last-child { border-bottom: none; }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.5rem 0;
+  }
+
+  .arch-display {
+    margin-top: 1.5rem;
+    background: var(--bark);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .arch-name {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--sand);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  .arch-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .tov-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .tov-card {
+    padding: 1.25rem;
+    border-radius: 8px;
+    background: var(--cream);
+    border: 0.5px solid var(--blush);
+  }
+
+  .tov-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .tov-yes {
+    font-size: 12px;
+    color: #4A7A2A;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .tov-no {
+    font-size: 12px;
+    color: #8A4A2A;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .vp-box {
+    margin-top: 1.5rem;
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .vp-text {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--bark);
+    line-height: 1.5;
+  }
+</style>
+
+<div class="doc">
+
+  <div class="hero">
+    <div class="hero-label">Creative Direction Document — Sunflower Designs</div>
+    <div class="hero-title">Born from <em>hands</em>,<br>worn with <em>intention.</em></div>
+    <div class="hero-sub">Brand Strategy · Visual Design System · Website Architecture · Copy</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">01 — Brand Audit</div>
+    <div class="section-title">What <em>exists</em>, honestly assessed.</div>
+    <p class="body-text">The brand has genuine soul — handcrafted garments, South African made, with clear design intent. The assets reviewed show a founder with real aesthetic sensibility. But the digital presence doesn't yet match the quality of what she actually makes.</p>
+    <div class="audit-grid">
+      <div class="audit-card strength">
+        <div class="audit-card-label">Strengths</div>
+        <div class="audit-item">Logo has editorial elegance — SF monogram with botanical accent works well</div>
+        <div class="audit-item">Swing tags + woven labels show genuine brand investment</div>
+        <div class="audit-item">"Made in South Africa" is a powerful, underused asset</div>
+        <div class="audit-item">Muslin & natural fabrics position the brand toward conscious luxury</div>
+        <div class="audit-item">Instagram shows real range — styling, behind-the-scenes, Cape Town aesthetic</div>
+      </div>
+      <div class="audit-card weakness">
+        <div class="audit-card-label">Weaknesses</div>
+        <div class="audit-item">Summer 2026 promo uses chaotic paint-splash — wrong brand signal</div>
+        <div class="audit-item">Handwritten annotations on product sheets undermine premium positioning</div>
+        <div class="audit-item">Instagram bio reads as a small business, not a design label</div>
+        <div class="audit-item">No consistent photographic style across the feed</div>
+        <div class="audit-item">Collection naming feels ad hoc — no coherent seasonal identity</div>
+      </div>
+      <div class="audit-card opportunity">
+        <div class="audit-card-label">Opportunities</div>
+        <div class="audit-item">Cape Town's creative scene is globally coveted — lean into it</div>
+        <div class="audit-item">African-made luxury is a premium category with global appetite</div>
+        <div class="audit-item">Muslin + breathable fabrics speak directly to sustainability trend</div>
+        <div class="audit-item">Founder-as-designer story is compelling and under-told</div>
+        <div class="audit-item">Modest fashion is a fast-growing international market</div>
+      </div>
+      <div class="audit-card watch">
+        <div class="audit-card-label">Inconsistencies to Fix</div>
+        <div class="audit-item">Yellow sunflower stickers feel casual vs. the editorial swing tags</div>
+        <div class="audit-item">Bold type on promo content vs. refined serif on collection covers</div>
+        <div class="audit-item">"Get ready to be amazed!" CTA tone vs. understated garment quality</div>
+        <div class="audit-item">Product photography lighting and styling varies significantly</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">02 — Brand Positioning</div>
+    <div class="section-title"><em>Quiet confidence.</em> Wearable art.</div>
+
+    <div class="arch-display">
+      <div class="arch-name">The Creator / The Caregiver</div>
+      <div class="arch-desc">A brand that makes things with her hands for women who move through the world with quiet assurance. Not seeking attention — deserving it. The clothes feel like they were made by someone who understood your body before you spoke.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="vp-box">
+      <div class="vp-text">"Sunflower Designs makes considered, handcrafted garments for women who dress for themselves — rooted in South Africa, recognised everywhere."</div>
+    </div>
+
+    <div class="two-col" style="margin-top:1.5rem;">
+      <div class="card">
+        <div class="card-label">Brand Personality</div>
+        <div class="tag-list" style="margin-top:0;">
+          <span class="tag">Warm</span>
+          <span class="tag">Intentional</span>
+          <span class="tag">Artisan</span>
+          <span class="tag">Unhurried</span>
+          <span class="tag">Honest</span>
+          <span class="tag">Rooted</span>
+          <span class="tag">Feminine</span>
+          <span class="tag">Considered</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">What we never say</div>
+        <div class="tag-list" style="margin-top:0;">
+          <span class="tag" style="border-color:#C4A08A;color:#8A4A2A;">Affordable</span>
+          <span class="tag" style="border-color:#C4A08A;color:#8A4A2A;">Get ready!</span>
+          <span class="tag" style="border-color:#C4A08A;color:#8A4A2A;">Amazing deal</span>
+          <span class="tag" style="border-color:#C4A08A;color:#8A4A2A;">Drop</span>
+          <span class="tag" style="border-color:#C4A08A;color:#8A4A2A;">Slay</span>
+          <span class="tag" style="border-color:#C4A08A;color:#8A4A2A;">Fire 🔥</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">03 — Tone of Voice</div>
+    <div class="section-title">Words that feel like <em>linen.</em></div>
+    <p class="body-text">Every word on the site should feel like it was chosen carefully — the way a cut is chosen. Spare. Meaningful. Never shouting.</p>
+    <div class="tov-row">
+      <div class="tov-card">
+        <div class="tov-label">We sound like</div>
+        <div class="tov-yes">
+          Warm but precise<br>
+          Quietly confident<br>
+          Poetic without pretension<br>
+          Honest about craft<br>
+          Inviting, never pushy<br>
+          Local, without being parochial
+        </div>
+      </div>
+      <div class="tov-card">
+        <div class="tov-label">We never sound like</div>
+        <div class="tov-no">
+          Hype-driven or salesy<br>
+          Influencer-casual<br>
+          Corporate and distant<br>
+          Overly spiritual/vague<br>
+          Apologetic about price<br>
+          Generic fast fashion
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">04 — Customer Personas</div>
+    <div class="section-title">She exists. <em>Know her.</em></div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-name">Amara</div>
+        <div class="persona-role">The Conscious Professional · 32–42</div>
+        <div class="persona-detail">Works in design, education, or creative industries. Knows what she wants and dresses accordingly. Shops less but buys better. Values knowing who made her clothes and where. Follows Zara, Poetry, and independent Cape Town labels. Influences her community without trying to.</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-name">Nadia</div>
+        <div class="persona-role">The Modern Modest Woman · 25–38</div>
+        <div class="persona-detail">Values comfort, coverage, and elegance simultaneously. Frustrated by fashion that either ignores her or tokenises her. Finds Sunflower's silhouettes — flowing, covered, intentional — genuinely freeing. Shops online, shares recommendations in her community circles.</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-name">Leila</div>
+        <div class="persona-role">The Gift-Giver · 35–55</div>
+        <div class="persona-detail">Buys for birthdays, baby showers, graduations. Wants to give something meaningful — not a voucher, not a mass-market piece. When she discovers Sunflower, it becomes her go-to for women she respects. Loves the packaging. Photographs the gift.</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-name">Zara</div>
+        <div class="persona-role">The Diaspora Customer · 28–45</div>
+        <div class="persona-detail">South African living in London, Amsterdam, or Melbourne. Homesick in a quiet way. Buying a Sunflower piece is buying Cape Town air. Pays international shipping without hesitation. Sends pieces to family back home. Her Instagram post is worth five ads.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">05 — Visual Design System</div>
+    <div class="section-title">Colour, type, <em>and silence.</em></div>
+
+    <p class="body-text">The palette is drawn from the brand's natural world — the ochre of dried sunflower heads, the grey-green of Cape fynbos, the warm linen of unbleached muslin. Nothing shouts. Everything belongs.</p>
+
+    <div class="palette-row">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#2C2416;"></div>
+        <div class="swatch-name">Bark</div>
+        <div class="swatch-hex">#2C2416</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#5C4A2A;"></div>
+        <div class="swatch-name">Earth</div>
+        <div class="swatch-hex">#5C4A2A</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#B8965A;"></div>
+        <div class="swatch-name">Gold</div>
+        <div class="swatch-hex">#B8965A</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#C4A97D;"></div>
+        <div class="swatch-name">Sand</div>
+        <div class="swatch-hex">#C4A97D</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#7A8C6E;"></div>
+        <div class="swatch-name">Sage</div>
+        <div class="swatch-hex">#7A8C6E</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#E8DDD0;"></div>
+        <div class="swatch-name">Blush</div>
+        <div class="swatch-hex">#E8DDD0</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#F5F0E8; border: 0.5px solid #E8DDD0;"></div>
+        <div class="swatch-name">Cream</div>
+        <div class="swatch-hex">#F5F0E8</div>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-row">
+        <div class="type-meta">Display — Cormorant Garamond Light Italic</div>
+        <div class="type-display">Made here. Worn everywhere.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Heading — Cormorant Garamond Regular, Tracked</div>
+        <div class="type-h2">SPRING SUMMER 2026</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Body — Inter Light 300</div>
+        <div class="type-body-sample">Each garment begins as a conversation between fabric and form. We cut by hand, sew with attention, and send each piece out into the world knowing it was made to last.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Label / Caption — Inter Medium, Tracked, Uppercase</div>
+        <div class="type-caption">New Arrivals · Made in Cape Town · Free Shipping Over R1,500</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <div class="section-label" style="margin-bottom:1rem;">Button System</div>
+      <div class="btn-row">
+        <button class="btn-primary">Shop Collection</button>
+        <button class="btn-outline">Learn More</button>
+        <button class="btn-ghost">View Lookbook →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">06 — Site Architecture</div>
+    <div class="section-title">Where users <em>move.</em></div>
+    <div class="sitemap">
+      <div class="sitemap-row">
+        <div class="sitemap-node accent">Home</div>
+      </div>
+      <div class="sitemap-row" style="margin-left:20px;">
+        <div class="sitemap-connector">└</div>
+        <div class="sitemap-children">
+          <div class="sitemap-node">Collections</div>
+          <div class="sitemap-node">About Farah</div>
+          <div class="sitemap-node">Lookbook</div>
+          <div class="sitemap-node">Care Guide</div>
+          <div class="sitemap-node">Contact</div>
+        </div>
+      </div>
+      <div class="sitemap-row" style="margin-left:40px; margin-top:4px;">
+        <div class="sitemap-connector">└</div>
+        <div class="sitemap-children">
+          <div class="sitemap-node secondary">Spring Summer 2026</div>
+          <div class="sitemap-node secondary">Essentials</div>
+          <div class="sitemap-node secondary">Archive</div>
+          <div class="sitemap-node secondary">Gift</div>
+        </div>
+      </div>
+      <div class="sitemap-row" style="margin-left:40px; margin-top:4px;">
+        <div class="sitemap-connector">└</div>
+        <div class="sitemap-children">
+          <div class="sitemap-node secondary">Product Detail Page</div>
+          <div class="sitemap-node secondary">Size Guide</div>
+          <div class="sitemap-node secondary">Cart / Checkout</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">07 — Homepage Wireframe</div>
+    <div class="section-title">The digital <em>shopfront.</em></div>
+    <div class="wireframe">
+      <div class="wf-nav">
+        <div class="wf-nav-brand">Sunflower Designs</div>
+        <div class="wf-nav-links">
+          <span class="wf-nav-link">Collections</span>
+          <span class="wf-nav-link">About</span>
+          <span class="wf-nav-link">Lookbook</span>
+          <span class="wf-nav-link" style="color:var(--sand);">↗ Shop</span>
+        </div>
+      </div>
+      <div class="wf-hero">
+        <div class="wf-hero-bg"></div>
+        <div class="wf-hero-eyebrow">Summer 2026 Collection — Now Available</div>
+        <div class="wf-hero-title">Clothes that move<br>the way you do.</div>
+        <button class="wf-hero-cta">Explore the Collection</button>
+      </div>
+      <div class="wf-strips">
+        <div class="wf-strip">
+          <div class="wf-strip-img">[ Editorial Image ]</div>
+          <div class="wf-strip-title">Summer Sets</div>
+          <div class="wf-strip-sub">Muslin · Breathable · Handmade</div>
+        </div>
+        <div class="wf-strip">
+          <div class="wf-strip-img">[ Editorial Image ]</div>
+          <div class="wf-strip-title">Dresses</div>
+          <div class="wf-strip-sub">Flowing · Modest · Considered</div>
+        </div>
+        <div class="wf-strip">
+          <div class="wf-strip-img">[ Editorial Image ]</div>
+          <div class="wf-strip-title">Gift a Piece</div>
+          <div class="wf-strip-sub">Beautifully wrapped · Cape Town made</div>
+        </div>
+      </div>
+      <div class="wf-quote">
+        <div class="wf-quote-text">"Every piece begins with fabric spread across a table in Cape Town. It ends on a woman living her life."</div>
+      </div>
+      <div class="wf-footer">
+        <div>
+          <div class="wf-footer-col-title">Navigate</div>
+          <span class="wf-footer-link">Collections</span>
+          <span class="wf-footer-link">Lookbook</span>
+          <span class="wf-footer-link">About</span>
+          <span class="wf-footer-link">Care Guide</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">Order</div>
+          <span class="wf-footer-link">Size Guide</span>
+          <span class="wf-footer-link">Shipping</span>
+          <span class="wf-footer-link">Returns</span>
+          <span class="wf-footer-link">Contact</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">Sunflower Designs</div>
+          <span class="wf-footer-link">Made in South Africa</span>
+          <span class="wf-footer-link">@_sunflowerdesigns_</span>
+          <span class="wf-footer-link">farahdavids28@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">08 — Website Copy</div>
+    <div class="section-title">Every word <em>earned.</em></div>
+    <div class="copy-block">
+      <div class="copy-item">
+        <div class="copy-label">Homepage Hero</div>
+        <div class="copy-headline">Clothes that move the way you do.</div>
+        <div class="copy-sub">Handcrafted women's fashion, designed and made in Cape Town. Each piece begins as an intention — to dress a real woman, living a real life, with quiet elegance.</div>
+      </div>
+      <div class="copy-item">
+        <div class="copy-label">About / Brand Story</div>
+        <div class="copy-headline">Farah designs from instinct and from experience.</div>
+        <div class="copy-sub">She started Sunflower Designs because she couldn't find clothes that felt right — not too formal, not too casual, always somehow not quite hers. So she made them herself. From a table in Cape Town, she cuts, drapes, stitches, and considers. The result is a small label with a clear point of view: clothing that a woman chooses, rather than settles for.</div>
+      </div>
+      <div class="copy-item">
+        <div class="copy-label">Collection — Summer 2026</div>
+        <div class="copy-headline">Summer, considered.</div>
+        <div class="copy-sub">Breathable muslin sets. Relaxed coordinates in sage, ivory, and earth. Pieces designed to be worn again and again — and to get softer with every wash. This is what a Cape Town summer feels like, made wearable.</div>
+      </div>
+      <div class="copy-item">
+        <div class="copy-label">Product Page — Muslin Set</div>
+        <div class="copy-headline">The Lace-Trim Muslin Set</div>
+        <div class="copy-sub">Cut from 100% muslin — a fabric known for its lightness and its patience with the body. The back-tie detail is adjustable. The lace trim at the hem gives the set a handmade signature. This is a piece that belongs on a Sunday morning and stays on into the evening. Soft from the first wear. Softer each time after.</div>
+      </div>
+      <div class="copy-item">
+        <div class="copy-label">Made in South Africa (Footer / Tag)</div>
+        <div class="copy-headline">Designed and made in Cape Town.</div>
+        <div class="copy-sub">Every Sunflower garment is handmade in South Africa. When you wear this, you wear the hands that made it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">09 — Mobile Experience</div>
+    <div class="section-title">The phone is the <em>primary store.</em></div>
+    <p class="body-text">The majority of Sunflower's customers discover and buy via Instagram → mobile browser. Every design decision must work thumb-first. Key principles:</p>
+    <div class="two-col" style="margin-top:1.25rem;">
+      <div class="card">
+        <div class="card-label">Navigation</div>
+        <div class="card-body">Sticky minimal header. Brand name only. Three-line menu. Cart icon. Nothing else.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Product Images</div>
+        <div class="card-body">Full-width swipeable gallery. Front, back, detail, on-body. No thumbnails.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Add to Cart</div>
+        <div class="card-body">Persistent bottom bar. Size selector inline. One tap to bag. No modal interruptions.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Checkout</div>
+        <div class="card-body">PayFast + credit card. WhatsApp order confirmation. Single-page flow. No account required.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">10 — Implementation Notes</div>
+    <div class="section-title">How to <em>build this.</em></div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-label">Recommended Stack</div>
+        <div class="card-body">Shopify (Prestige or Dawn theme, heavily customised) or Next.js + Medusa.js for full control. PayFast for SA payments. Cloudflare for performance.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Photography Brief</div>
+        <div class="card-body">Natural light only. Linen, concrete, and Cape fynbos as surfaces. No white seamless studio. Model must feel relatable, not aspirational-distant.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Instagram Strategy</div>
+        <div class="card-body">Retire the paint-splash aesthetic. Establish a 3-grid visual system: product editorial, behind-the-scenes making, and Cape Town location content.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Launch Sequence</div>
+        <div class="card-body">Teaser: "Something is coming." Brand film: 60-second founder story. Drop: Summer 2026 with waitlist access first. WhatsApp broadcast to existing customers.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
