@@ -1,1 +1,1 @@
-//PLACEHOLDER
+$(cat /mnt/data/brandImages.ts)
