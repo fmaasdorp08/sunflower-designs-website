@@ -1,14 +1,21 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
 import { Instagram } from 'lucide-react';
+import { brandImages } from '@/data/brandImages';
 
 const images = [
-  'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&h=800&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=800&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=800&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&h=800&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=800&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=800&h=800&fit=crop&q=80',
+  brandImages.farah,
+  brandImages.muslinSet,
+  brandImages.swingTags,
+  brandImages.wovenLabels,
+  brandImages.madeInSaLabel,
+  brandImages.ribbonLabels,
+  brandImages.stickerSheet,
+  brandImages.springSummerCover,
+  brandImages.collectionComingSoon,
+  brandImages.summerArtwork,
+  brandImages.instagramGrid,
+  brandImages.instagramProfile,
 ];
 
 export default function InstagramGallery() {
@@ -18,15 +25,15 @@ export default function InstagramGallery() {
     <section className="bg-light-sand py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader
-          overline="@SUNFLOWERDESIGNS"
+          overline="@SUNFLOWERDESIGNS_"
           headline="Follow the Journey"
         />
-        <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-3 gap-2">
+        <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
           {images.map((src, i) => (
-            <div key={i} className="relative aspect-square group overflow-hidden">
+            <div key={i} className="relative aspect-square group overflow-hidden bg-white">
               <img
                 src={src}
-                alt={`Sunflower Designs Instagram ${i + 1}`}
+                alt={`Sunflower Designs visual ${i + 1}`}
                 className="w-full h-full object-cover transition-transform duration-400 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-deep-espresso/0 group-hover:bg-deep-espresso/30 transition-colors duration-300 flex items-center justify-center">
@@ -36,7 +43,7 @@ export default function InstagramGallery() {
           ))}
         </div>
         <p className="text-center mt-8 text-sm font-medium text-dark-taupe">
-          Follow @sunflowerdesigns on Instagram →
+          Follow @sunflowerdesigns_ on Instagram →
         </p>
       </div>
     </section>
