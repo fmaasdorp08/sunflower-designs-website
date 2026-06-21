@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react';
+import { brandImages } from '@/data/brandImages';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,14 +35,15 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
           scrolled
-            ? 'h-12 bg-light-sand/92 backdrop-blur-xl border-b border-dark-taupe/6'
-            : 'h-[60px] bg-light-sand border-b border-dark-taupe/6'
+            ? 'h-14 bg-light-sand/92 backdrop-blur-xl border-b border-dark-taupe/6'
+            : 'h-[68px] bg-light-sand border-b border-dark-taupe/6'
         }`}
       >
         <div className="max-w-[1280px] mx-auto h-full flex items-center justify-between px-6">
           {/* Logo */}
-          <Link to="/" className="text-nav text-dark-taupe tracking-[0.1em] hover:text-sunflower-gold transition-colors">
-            SUNFLOWER
+          <Link to="/" className="flex items-center gap-3 text-dark-taupe hover:text-sunflower-gold transition-colors">
+            <img src={brandImages.logo} alt="Sunflower Designs logo" className="h-9 w-9 rounded-full object-contain bg-white/60" />
+            <span className="text-nav tracking-[0.1em] whitespace-nowrap">Sunflower Designs</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -151,7 +153,11 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-light-sand pt-16 px-6 md:hidden animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-40 bg-light-sand pt-20 px-6 md:hidden animate-in fade-in duration-200">
+          <div className="flex items-center gap-3">
+            <img src={brandImages.logo} alt="Sunflower Designs logo" className="h-12 w-12 rounded-full object-contain bg-white/70" />
+            <span className="text-nav tracking-[0.1em] text-dark-taupe">Sunflower Designs</span>
+          </div>
           <nav className="flex flex-col gap-6 mt-8">
             <Link to="/shop" className="font-display text-3xl text-dark-taupe">Shop</Link>
             <Link to="/collection" className="font-display text-3xl text-dark-taupe">Collections</Link>
