@@ -4,6 +4,7 @@ import { useLenis, getLenis } from '@/hooks/useLenis';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CustomCursor from '@/components/CustomCursor';
+import PreviewGate from '@/components/PreviewGate';
 import HomePage from '@/pages/HomePage';
 import ShopPage from '@/pages/ShopPage';
 import CollectionPage from '@/pages/CollectionPage';
@@ -28,7 +29,7 @@ function AppContent() {
   useLenis();
 
   return (
-    <>
+    <PreviewGate>
       <CustomCursor />
       <Header />
       <ScrollToTop />
@@ -41,7 +42,7 @@ function AppContent() {
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
       <Footer />
-    </>
+    </PreviewGate>
   );
 }
 
