@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const PREVIEW_CODE = 'FARAH2026';
-const SESSION_KEY = 'sunflower_preview_session_active';
-const USED_KEY = 'sunflower_preview_link_used';
+const EXPIRY_DATE = new Date('2026-07-10T23:59:59+02:00');
 
 interface PreviewGateProps {
   children: React.ReactNode;
@@ -14,16 +13,10 @@ export default function PreviewGate({ children }: PreviewGateProps) {
   const [allowed, setAllowed] = useState(false);
   const [expired, setExpired] = useState(false);
 
+  const isExpired = () => new Date() > EXPIRY_DATE;
+
   useEffect(() => {
-    const activeSession = sessionStorage.getItem(SESSION_KEY) === 'true';
-    const alreadyUsed = localStorage.getItem(USED_KEY) === 'true';
-
-    if (activeSession) {
-      setAllowed(true);
-      return;
-    }
-
-    if (alreadyUsed) {
+    if (isExpired()) {
       setExpired(true);
       return;
     }
@@ -32,23 +25,21 @@ export default function PreviewGate({ children }: PreviewGateProps) {
     const previewParam = params.get('preview');
 
     if (previewParam && previewParam.toUpperCase() === PREVIEW_CODE) {
-      unlockPreview();
+      setAllowed(true);
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
 
-  const unlockPreview = () => {
-    sessionStorage.setItem(SESSION_KEY, 'true');
-    localStorage.setItem(USED_KEY, 'true');
-    setAllowed(true);
-    setExpired(false);
-  };
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (isExpired()) {
+      setExpired(true);
+      return;
+    }
+
     if (code.trim().toUpperCase() === PREVIEW_CODE) {
-      unlockPreview();
+      setAllowed(true);
       return;
     }
 
@@ -70,12 +61,12 @@ export default function PreviewGate({ children }: PreviewGateProps) {
         {expired ? (
           <>
             <p className="text-warm-grey leading-relaxed mt-5">
-              This preview link has expired. Please ask Fouad for a fresh preview code if you need to view the website again.
+              This preview expired on 10 July 2026. Please contact Fouad for a new preview link.
             </p>
             <div className="mt-8 rounded-2xl bg-light-sand p-5 text-left">
               <p className="text-caption text-muted-olive mb-2">NOTE</p>
               <p className="text-sm text-warm-grey leading-relaxed">
-                This is a temporary concept preview prepared for review only.
+                This was a temporary concept preview prepared for review only.
               </p>
             </div>
           </>
@@ -83,6 +74,9 @@ export default function PreviewGate({ children }: PreviewGateProps) {
           <>
             <p className="text-warm-grey leading-relaxed mt-5">
               This concept website is currently under private review. Enter the preview code to continue.
+            </p>
+            <p className="text-sm text-warm-grey mt-3">
+              Preview available until <strong>10 July 2026</strong>.
             </p>
             <form onSubmit={handleSubmit} className="mt-8 space-y-4">
               <input
@@ -104,7 +98,7 @@ export default function PreviewGate({ children }: PreviewGateProps) {
               </button>
             </form>
             <p className="text-xs text-warm-grey/70 mt-5">
-              For Farah Davids only. This preview will expire after use on this device.
+              For Farah Davids only. This preview is time-limited and expires automatically.
             </p>
           </>
         )}
